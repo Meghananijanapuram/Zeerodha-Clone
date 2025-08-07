@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import Navbar from "../landing_page/Navbar";
 import Footer from "../landing_page/Footer";
 
+
 const Signup = () => {
   const navigate = useNavigate();
   const [inputValue, setInputValue] = useState({
@@ -35,7 +36,7 @@ const Signup = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        "http://localhost:3002/signup",
+        `${process.env.REACT_APP_BACKEND_URL}/signup`,
         {
           ...inputValue,
         },
@@ -45,7 +46,7 @@ const Signup = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("https://zeerodha-dashboard.vercel.app/");
+          window.location.href = process.env.REACT_APP_DASHBOARD_URL;
         }, 1000);
       } else {
         handleError(message);

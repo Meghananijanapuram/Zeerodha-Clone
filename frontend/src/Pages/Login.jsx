@@ -34,7 +34,7 @@ const Login = () => {
     e.preventDefault();
     try {
       const { data } = await axios.post(
-        `${BACKEND_URL}`,
+        `${process.env.REACT_APP_BACKEND_URL}/login`,
         {
           ...inputValue,
         },
@@ -45,7 +45,7 @@ const Login = () => {
       if (success) {
         handleSuccess(message);
         setTimeout(() => {
-          navigate("https://zeerodha-dashboard.vercel.app/");
+          nwindow.location.href = process.env.REACT_APP_DASHBOARD_URL;
         }, 1000);
       } else {
         handleError(message);
